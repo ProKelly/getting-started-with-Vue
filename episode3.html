@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episode 3: List and Computed Properties</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-full grid place-items-center">
+    
+    <div id="app">
+        <section v-show="incompletedAssigments">
+            <h2 class="font-bold mb-2">In Progress</h2>
+
+            <ul>
+                <li v-for="assignment in assignments.filter(a => !a.completed)"
+                    :key='assignment.id'> <!--binding key attribute solves the issue of selecting next item automatically-->
+                    <label>
+                        {{ assignment.name }}
+
+                        <input type="checkbox" v-model="assignment.completed">
+                    </label>
+                </li>
+            </ul>
+        </section>
+
+        <section class="mt-5" v-show="assignments.filter(a => a.completed).length"> <!--it would be better and shorter if you use the computed method "completedAssigments" in v-show just like above-->
+            <h2 class="font-bold mb-2">Completed</h2>
+
+            <ul>
+                <li v-for="assignment in assignments.filter(a => a.completed)"
+                    :key='assignment.id'>
+                    <label>
+                        {{ assignment.name }}
+
+                        <input type="checkbox" v-model="assignment.completed">
+                    </label>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        let app = {
+            data() {
+                return {
+                    assignments: [
+                        {name: 'Finish Project', completed:false, id:1},
+                        {name: 'Read chapter 4', completed:false, id:2},
+                        {name: 'Turn in Assignments', completed:false, id:3},
+                    ]
+                };
+            },
+            computed: {
+                incompletedAssigments() {
+                    return this.assignments.filter(a => !a.completed).length
+                },
+                completedAssigments() {
+                    return this.assignments.filter(a => a.completed).length
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app');
+    </script>
+</body>
+</html>
