@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episode 6: Component Props</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-full grid place-items-center">
+
+    <style>
+
+.is-loading {
+  /* change color here */
+  color: transparent;
+}
+.is-loading,
+.is-loading div {
+  box-sizing: border-box;
+}
+.is-loading {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.is-loading div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: currentColor;
+  animation: is-loading 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.is-loading div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.is-loading div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.is-loading div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0s;
+}
+@keyframes is-loading {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%, 100% {
+    top: 24px;
+    height: 32px;
+  }
+}
+    </style>
+
+    <div id="app">
+        <app-button :processing="true">Submit</app-button>
+        <div class="is-loading"><div></div><div></div><div></div></div>
+    </div>
+    
+    <script type="module">
+        import App from './js/components/App.js';
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>
