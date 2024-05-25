@@ -10,8 +10,8 @@
 <body class="h-full grid place-items-center bg-gray-600">
     
     <div id="app">
-        <!-- <input type="text" v-model="name"> -->
-        <input type="text" :value="name" @input="name = $event.target.value">
+        <!-- <input type="text" v-model="name"> or -->
+        <input type="text" :value="name" @input="name = $event.target.value"> <!--alternative to v-model-->
 
         <div>{{name}}</div>
     </div>
