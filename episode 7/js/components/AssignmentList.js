@@ -28,7 +28,7 @@ export default {
     </section>
     
     `, 
-    props: {
+    props: { //props are used to define varibles or properties that should be passed when making use of this component
         assignments:Array,
         title:String
     },

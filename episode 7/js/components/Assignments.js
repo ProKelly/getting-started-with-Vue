@@ -22,7 +22,7 @@ data() {
         ], 
     };
 },
-computed: {
+computed: { //computed methods depend on other varibles in the application
     incompletedAssigments() {
         return this.assignments.filter(a => !a.completed)
     },
@@ -31,7 +31,7 @@ computed: {
     }, 
 },
 methods: {
-    add(name) {
+    add(name) { //the name varible input is used to to specify that the'res a value from the child that was emited ($emit)
        this.assignments.push({
         name: name,
         completed:false,

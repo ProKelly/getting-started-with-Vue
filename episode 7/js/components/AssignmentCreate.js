@@ -17,8 +17,9 @@ export default {
     },
     methods: {
         add() { 
-            this.$emit('add', this.newAssignment);
-            this.newAssignment = '';
+            this.$emit('add', this.newAssignment); //$emit is used to hold the new assignment so that it can be accesed by the parent component which is Assignments.js
+            //the name 'add' will be used as @add='' in the parent to reference the the method to be executed to to access the change in the assignment
+            this.newAssignment = ''; 
          }
     }
 }
