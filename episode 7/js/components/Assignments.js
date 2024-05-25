@@ -5,22 +5,26 @@ export default {
     components: {assignmentList, AssignmentCreate},
     template: `
 
-    <section class="space-y-6">
-        <assignmentList :assignments="incompletedAssigments" title="In Progress"></assignmentList>
-        <assignmentList :assignments="completedAssigments" title="Completed"></assignmentList>
-        
+    <section class="flex gap-8">
+        <assignmentList :assignments="incompletedAssigments" title="In Progress" >
         <assignment-create @add='add'></assignment-create>
+        </assignmentList>
+        <assignmentList :assignments="completedAssigments" title="Completed" canToggle="true"></assignmentList>
+
     </section>
 
 `, 
 data() {
     return {
-        assignments: [
-            {name: 'Finish Project', completed:false, id:1, tag:'math'},
-            {name: 'Read chapter 4', completed:false, id:2, tag:'science'},
-            {name: 'Turn in Assignments', completed:false, id:3, tag:'engineering'},
-        ], 
+        assignments: [], 
     };
+},
+created() {
+    fetch('http://localhost:3001/assignments')
+    .then(response => response.json())
+    .then(assignments => {
+        this.assignments = assignments;
+    })
 },
 computed: { //computed methods depend on other varibles in the application
     incompletedAssigments() {
